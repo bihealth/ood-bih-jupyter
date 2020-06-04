@@ -44,7 +44,7 @@ attributes:
       popular packages.  Missing packages? Try to build and use your
       own miniconda package!
     options:
-      - [ "bih-jupyter_python3.6", "bih-jupyter_python3.6" ]
+      - [ "bih-jupyter_0.2", "bih-jupyter_0.2" ]
   bih_cpus:
     widget: "number_field"
     label: "Number of cores"
