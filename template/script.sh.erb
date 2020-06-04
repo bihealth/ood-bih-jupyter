@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -x
+
+<% if context.python_provider == "singularity" %>
+  singularity exec /opt/ood/singularity-images/<%= context.singularity_image %>.sif \
+      jupyter <%= context.jupyter_kind %> --config="${CONFIG_FILE}"
+<% else %>
+  source <%= context.miniconda_path.split(":")[0] %>/activate
+  <% if context.miniconda_path.include? ":" %>
+    conda activate <%= context.miniconda_path.split(":")[1] %>
+  <% end %>
+  jupyter <%= context.jupyter_kind %> --config="${CONFIG_FILE}"
+<% end %>
