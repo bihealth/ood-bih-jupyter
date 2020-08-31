@@ -2,8 +2,10 @@
 
 set -x
 
+BINDS=/fast
+
 <% if context.python_provider == "singularity" %>
-  singularity exec /opt/ood/singularity-images/<%= context.singularity_image %>.sif \
+  singularity exec --no-home -B "$BINDS" /opt/ood/singularity-images/<%= context.singularity_image %>.sif \
       jupyter <%= context.jupyter_kind %> --config="${CONFIG_FILE}"
 <% else %>
   source <%= context.miniconda_path.split(":")[0] %>/activate
