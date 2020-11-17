@@ -2,7 +2,11 @@
 
 set -x
 
-BINDS=/fast
+if [[ -d /fast ]]; then
+    BINDS=/fast
+else
+    BINDS=/data
+fi
 
 <% if context.python_provider == "singularity" %>
   singularity exec --no-home -B "$BINDS" /opt/ood/singularity-images/<%= context.singularity_image %>.sif \
