@@ -4,6 +4,7 @@ form:
   - python_provider
   - jupyter_kind
   - miniconda_path
+  - work_dir
   - singularity_image
   - bih_cpus
   - bih_mem
@@ -35,6 +36,12 @@ attributes:
       Specify the path including the "bin" of the Miniconda3 installation
       that you want to use.  Separate name of environment with a colon.
       Example: `~/miniconda3/bin:fancy-jupyter`.
+  miniconda_path:
+    widget: "text_field"
+    label: "Work Dir"
+    help: |
+      Specify the path to the work dirctory.
+      If you leave this blank then you would start in your `$HOME`.
   singularity_image:
     widget: "select"
     label: "Singularity Image"

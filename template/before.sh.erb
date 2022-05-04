@@ -9,6 +9,10 @@ SALT="$(create_passwd 16)"
 password="$(create_passwd 16)"
 PASSWORD_SHA1="$(echo -n "${password}${SALT}" | openssl dgst -sha1 | awk '{print $NF}')"
 
+if ! [[ -z "<%= context.work_dir %>" ]]; then
+    NOTEBOOK_ROOT=$(readlink -f <%= context.work_dir %>)
+fi
+
 # Notebook root directory
 export NOTEBOOK_ROOT="${NOTEBOOK_ROOT:-${HOME}}"
 
