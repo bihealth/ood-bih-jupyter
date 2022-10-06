@@ -36,7 +36,7 @@ attributes:
       Specify the path including the "bin" of the Miniconda3 installation
       that you want to use.  Separate name of environment with a colon.
       Example: `~/miniconda3/bin:fancy-jupyter`.
-  miniconda_path:
+  work_dir:
     widget: "text_field"
     label: "Work Dir"
     help: |
