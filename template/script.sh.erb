@@ -8,8 +8,8 @@ else
     BINDS=/data
 fi
 
-<% if context.python_provider == "singularity" %>
-  singularity exec --no-home -B "$BINDS" /opt/ood/singularity-images/<%= context.singularity_image %>.sif \
+<% if context.python_provider == "apptainer" %>
+  apptainer exec --no-home -B "$BINDS" /opt/ood/singularity-images/<%= context.apptainer_image %>.sif \
       jupyter <%= context.jupyter_kind %> --config="${CONFIG_FILE}"
 <% else %>
   source <%= context.miniconda_path.split(":")[0] %>/activate
