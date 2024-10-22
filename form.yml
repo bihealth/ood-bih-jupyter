@@ -8,7 +8,7 @@ form:
   - apptainer_image
   - bih_cpus
   - bih_mem
-  - bih_days
+  - bih_time
   - bih_partition
 attributes:
   jupyter_kind:
@@ -67,14 +67,13 @@ attributes:
     help: Memory to allocate for job.
     min: 1
     max: 256
-  bih_days:
-    widget: "number_field"
-    label: "Running time [days]"
-    value: 1
-    help: Number of days to run.
-    min: 1
-    max: 14
-    step: 1
+  bih_time:
+    widget: "text_field"
+    label: "Running time"
+    value: "1d"
+    required: true
+    help: "Specify the running time as either hours (e.g., '12h') or days (e.g., '3d')."
+    pattern: "^([1-9]h|1[0-9]h|2[0-4]h|[1-9]d|1[0-4]d)$"
   bih_partition:
     widget: select
     label: "partition to run in"
