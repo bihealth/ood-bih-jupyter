@@ -3,7 +3,7 @@ cluster: "research"
 form:
   - python_provider
   - jupyter_kind
-  - miniconda_path
+  - conda_path
   - work_dir
   - apptainer_image
   - bih_cpus
@@ -27,15 +27,15 @@ attributes:
       on miniconda3 Docker images) or provide a path to your miniconda3
       installation.
     options:
-      - [ "Apptainer", "apptainer" ]
-      - [ "miniconda",   "miniconda"   ]
-  miniconda_path:
+      - [ "Apptainer", "apptainer", data-hide-conda-path: true ]
+      - [ "Conda",   "miniconda"   ]
+  conda_path:
     widget: "text_field"
-    label: "Miniconda Path"
+    label: "Conda Path"
     help: |
-      Specify the path including the "bin" of the Miniconda3 installation
-      that you want to use.  Separate name of environment with a colon.
-      Example: `~/miniconda3/bin:fancy-jupyter`.
+      Specify the path including the "bin" of the Conda installation
+      you want to use. Separate name of environment with a colon.
+      Example: `~/work/miniforge/bin:fancy-jupyter`.
   work_dir:
     widget: "text_field"
     label: "Work Dir"
@@ -47,9 +47,9 @@ attributes:
     label: "Apptainer Image"
     help: |
       The Apptainer images are based on the miniconda3 Docker image
-      and install jupyter notebook, scikit-learn, pandas, and other
+      and install Jupyter notebook, scikit-learn, pandas, and other
       popular packages.  Missing packages? Try to build and use your
-      own miniconda package!
+      own conda installation!
     options:
       - [ "bih-jupyter_0.2", "bih-jupyter_0.2" ]
   bih_cpus:
