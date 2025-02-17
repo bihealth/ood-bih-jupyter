@@ -49,7 +49,7 @@ attributes:
       and install Jupyter notebook, scikit-learn, pandas, and other
       popular packages.
     options:
-      - [ "bih-jupyter_0.2", "bih-jupyter_0.2" ]
+      - [ "bih-jupyter", "bih-jupyter-0.3" ]
   bih_cpus:
     widget: "number_field"
     label: "Number of cores"
