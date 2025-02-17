@@ -4,4 +4,4 @@ category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch a [Jupyter] server using [Python] on the BIH Cluster.
+  This app will launch a [Jupyter](https://jupyter.org/) server using [Python](https://www.python.org/) on the BIH Cluster.
