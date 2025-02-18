@@ -21,6 +21,14 @@ export NOTEBOOK_ROOT="${NOTEBOOK_ROOT:-${HOME}}"
 export CONFIG_FILE="${PWD}/config.py"
 
 # Generate Jupyter configuration file with secure file permissions
+# We need different options for Notebook v7 and older versions
+<% if context.conda_path.include? ":" %>
+  jupyter_version=$(<%= File.expand_path("..", context.conda_path.split(":")[0]) %>/envs/<%= context.conda_path.split(":")[1] %>/bin/jupyter notebook --version)
+<% else %>
+  jupyter_version=$(<%= context.conda_path.split(":")[0] %>/jupyter notebook --version)
+<% end %>
+
+if [[ $jupyter_version == 7* ]]; then
 (
 umask 077
 cat > "${CONFIG_FILE}" << EOL
@@ -37,3 +45,21 @@ c.ServerApp.root_dir = '${NOTEBOOK_ROOT}'
 c.ServerApp.disable_check_xsrf = True
 EOL
 )
+else
+(
+umask 077
+cat > "${CONFIG_FILE}" << EOL
+c.JupyterApp.config_file_name = 'ondemand_config'
+c.KernelSpecManager.ensure_native_kernel = False
+c.NotebookApp.password = u'sha1:${SALT}:${PASSWORD_SHA1}'
+c.NotebookApp.ip = '*'
+c.NotebookApp.port = ${port}
+c.NotebookApp.port_retries = 0
+c.NotebookApp.base_url = '/node/${host}/${port}/'
+c.NotebookApp.open_browser = False
+c.NotebookApp.allow_origin = '*'
+c.NotebookApp.notebook_dir = '${NOTEBOOK_ROOT}'
+c.NotebookApp.disable_check_xsrf = True
+EOL
+)
+fi
