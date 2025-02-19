@@ -26,8 +26,8 @@ attributes:
       You can either use one of the provided Apptainer images
       or provide a path to your own Conda installation.
     options:
-      - [ "Apptainer", "apptainer", data-hide-conda-path: true ]
-      - [ "Conda",   "miniconda", data-hide-apptainer-image: true ]
+      - [ "Apptainer", "apptainer", data-hide-conda-path: true, data-set-conda-path: "hidden" ]
+      - [ "Conda",   "miniconda", data-hide-apptainer-image: true, data-set-conda-path: "" ]
   conda_path:
     widget: "text_field"
     label: "Conda Path"
@@ -35,6 +35,7 @@ attributes:
       Specify the path including the "bin" of the Conda installation
       you want to use. Separate name of environment with a colon.
       Example: `~/work/miniforge/bin:fancy-jupyter`.
+    required: true
   work_dir:
     widget: "text_field"
     label: "Work Dir"
