@@ -35,6 +35,7 @@ attributes:
       Specify the path including the "bin" of the Conda installation
       you want to use. Separate name of environment with a colon.
       Example: `~/work/miniforge/bin:fancy-jupyter`.
+    required: true
   work_dir:
     widget: "text_field"
     label: "Work Dir"
